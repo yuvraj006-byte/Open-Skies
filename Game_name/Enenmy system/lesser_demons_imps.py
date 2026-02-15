@@ -1,25 +1,38 @@
 import random
-lesser_demon_imps_attack_types = ["Small Fire Balls."]
-
-class Enemy_Type_Lesser_Demons:
-    def __init__(self, health, attack, defence):
+class Lesser_Demons:
+    def __init__(self, health, attack, defence, name, attack_types):
         self.health = health
         self.attack = attack
         self.defence = defence
+        self.name = name
+        self.attack_types = attack_types
 
     def __str__(self):
-        return f"Health: {self.health}, Attack: {self.attack}, Defence: {self.defence}"            
+        return f"{self.name} | HP: {self.health}, ATK: {self.attack}, DEF: {self.defence}, ATK_TYPE: {random.choice(self.attack_types)}"
         
+class Lesser_Demon_imps(Lesser_Demons):
+    @classmethod
+    def create(cls):
+        return cls(
+            health = random.randint(80, 120),
+            attack = random.randint(10, 15),
+            defence = random.randint(0,3),
+            name = "Imps",
+            attack_types = ["Small Fire Balls."]
+        )
 
-def Lesser_Demon_imps():
-    health = random.randint(80, 120)
-    attack = random.randint(10, 15)
-    defence = random.randint(0,3)
+class Lesser_Demon_hellhounds(Lesser_Demons):
+    @classmethod
+    def create(cls):
+        return cls(
+            health = random.randint(80, 120),
+            attack = random.randint(10, 15),
+            defence = random.randint(0,3),
+            name = "Hell hounds",
+            attack_types = ["Hell Bite.", "Death Pounce."]
+        )
+imp = Lesser_Demon_imps.create()
+hellhound = Lesser_Demon_hellhounds.create()
 
-    return health, attack, defence
-
-Lesser_Demon_imps_stats = Lesser_Demon_imps()
-
-demon_type_imps = Enemy_Type_Lesser_Demons(*Lesser_Demon_imps_stats)
-print(demon_type_imps)
-print(f"They are Firing {random.choice(lesser_demon_imps_attack_types)}")
+Lesser_Demon_List = [imp, hellhound]
+print(random.choice(Lesser_Demon_List))
