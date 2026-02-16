@@ -16,8 +16,7 @@ def get_item():
     cursor = connection.cursor()
     sql_name_item = """
         SELECT
-        item_name,
-        item_type
+        item_name
         FROM items
         WHERE item_region = 'Green';
     """
@@ -29,6 +28,7 @@ def get_item():
     
     return result
 
+item = random.choice(get_item())
 def get_item_skill():
     connection = get_query()
     cursor = connection.cursor()
@@ -39,10 +39,10 @@ def get_item_skill():
         item_skill3, 
         item_skill4 
         FROM items
-        WHERE item_region = 'Green';
+        WHERE item_name = "%s%" and item_region = 'Green';
     """
 
-    cursor.execute((sql_skill_item))
+    cursor.execute((sql_skill_item), (item,))
 
     rows = cursor.fetchall()
     skills = []
@@ -70,20 +70,18 @@ class GreenItems:
         self.type = type
     
     def __str__(self):
-        return f"{self.name}, TYP: {self.type}, SKL: {self.skill}\nDMG : {self.damage_dealt}, AR: {self.armor_strength}, HEAL: {self.healing_done}"
+        return f"{self.name}, SKL: {self.skill}\nDMG : {self.damage_dealt}, AR: {self.armor_strength}, HEAL: {self.healing_done}"
 
 class GreenWeapons(GreenItems):
     
     @classmethod
     def create(cls):
         green_item_points = random.randint(8, 12)
-        item = random.choice(get_item())
-        item_name, item_type = item
+
         return cls(
             damage_dealt = green_item_points,
-            name = item_name,
-            type = item_type,
-            skill = random.choice(get_item_skill()),
+            name = item,
+            skill = get_item_skill(),
             armor_strength = green_item_points * 1.0,
             barrier_strength = green_item_points * 1.0,
             healing_done = green_item_points * 1.0, 
