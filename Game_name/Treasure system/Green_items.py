@@ -4,9 +4,9 @@ import mysql.connector
 def get_query():
     connection = mysql.connector.connect(
         host = "localhost",
-        user = "your_username",
-        password = "Your_passwor",
-        database = "game_project", 
+        user = "user",
+        password = "your_passowrd",
+        database = "game_project",
     )
     return connection
 
@@ -28,7 +28,7 @@ def get_item():
     
     return result
 
-item = random.choice(get_item())
+item = random.choice(get_item())[0]
 def get_item_skill():
     connection = get_query()
     cursor = connection.cursor()
@@ -39,7 +39,8 @@ def get_item_skill():
         item_skill3, 
         item_skill4 
         FROM items
-        WHERE item_name = "%s%" and item_region = 'Green';
+        WHERE item_name = %s
+        and item_region = 'Green';
     """
 
     cursor.execute((sql_skill_item), (item,))
@@ -60,14 +61,13 @@ def get_item_skill():
     return skills
 
 class GreenItems:
-    def __init__(self, damage_dealt, armor_strength, healing_done, barrier_strength, name, skill, type):
+    def __init__(self, damage_dealt, armor_strength, healing_done, barrier_strength, name, skill,):
         self.damage_dealt = damage_dealt
         self.armor_strength = armor_strength
         self.healing_done = healing_done
         self.barrier_strenght = barrier_strength
         self.name = name    
         self.skill = skill
-        self.type = type
     
     def __str__(self):
         return f"{self.name}, SKL: {self.skill}\nDMG : {self.damage_dealt}, AR: {self.armor_strength}, HEAL: {self.healing_done}"
