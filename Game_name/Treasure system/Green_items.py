@@ -4,8 +4,8 @@ import mysql.connector
 def get_query():
     connection = mysql.connector.connect(
         host = "localhost",
-        user = "your_username",
-        password = "Your_passwor",
+        user = "root",
+        password = "Cat",
         database = "game_project", 
     )
     return connection
