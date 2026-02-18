@@ -86,26 +86,32 @@ def demon_weakness_quest():
 
 # RUN GREEN SIDE QUEST
 
-import random
-
 def run_green_side_quest():
+
     print("\n--- GREEN SIDE QUEST ---")
 
-    quests = [
-        math_quest,
-        riddle_quest,
-        hidden_word_quest,
-        demon_coin_quest,
-        demon_weakness_quest
-    ]
+    quest_number = random.randint(1, 5)
 
-    selected_quest = random.choice(quests)
-    result = selected_quest()
+    if quest_number == 1:
+        result = math_quest()
+
+    elif quest_number == 2:
+        result = riddle_quest()
+
+    elif quest_number == 3:
+        result = hidden_word_quest()
+
+    elif quest_number == 4:
+        result = demon_coin_quest()
+
+    else:
+        result = demon_weakness_quest()
 
     if result:
         print("Success! You gain a small reward.")
     else:
         print("You failed. Minor damage taken.")
+
 
 
 # TEST
