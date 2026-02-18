@@ -176,3 +176,7 @@ def run_red_side_quest():
 
 if __name__ == "__main__":
     run_red_side_quest()
+
+
+
+

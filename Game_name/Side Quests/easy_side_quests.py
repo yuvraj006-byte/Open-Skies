@@ -117,3 +117,7 @@ def run_green_side_quest():
 # TEST
 
 run_green_side_quest()
+
+
+
+
