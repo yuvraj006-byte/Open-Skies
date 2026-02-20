@@ -1,5 +1,8 @@
 import random
 
+
+# BLACK - Risk Trial
+# You draw unstable energy from a Sanctuary core. Higher risk means higher chance of success… or failure.
 def black_risk_trial():
 
     print("\nA fractured core pulses with unstable energy.")
@@ -29,49 +32,41 @@ def black_risk_trial():
 
 
 # BLACK - Void Bargain
-# Accepting power always has a hidden cost.
-import random
-
+# A shadow offers power. Every choice carries consequence.
 def black_void_bargain():
 
     print("\nA towering shadow stretches across the ruins.")
-    print("Its voice echoes inside your mind:")
     print("'I can double your strength… but nothing is free.'\n")
 
-    print("1 - Accept the power immediately")
-    print("2 - Ask what the price is")
-    print("3 - Refuse the offer")
+    print("1 - Accept immediately")
+    print("2 - Ask the price")
+    print("3 - Refuse")
 
     choice = input("Choose 1, 2, or 3: ")
 
     if choice == "1":
-        print("\nDark energy surges through your veins.")
         chance = random.randint(1, 100)
 
         if chance <= 40:
-            print("You withstand the corruption. Your power increases.")
+            print("You withstand the corruption.")
             return True
         else:
-            print("The power overwhelms your mind. You lose control.")
+            print("The power overwhelms you.")
             return False
 
     elif choice == "2":
-        print("\nThe shadow smiles.")
-        print("'Your memories… I will take one.'")
-
-        print("You feel something slipping away…")
-        print("But your body remains unharmed.")
-
+        print("You learn the cost and survive the exchange.")
         return True
 
     elif choice == "3":
-        print("\nThe shadow fades.")
-        print("You remain pure… but weaker than you could have been.")
+        print("You walk away weaker but unchanged.")
         return False
 
-    print("\nThe silence consumes you.")
     return False
 
+
+# BLACK - Unseen Riddle
+# Solve the abstract riddle to proceed.
 def black_unseen_riddle():
 
     print("\nI have no blade, yet I can cut.")
@@ -82,38 +77,39 @@ def black_unseen_riddle():
     answer = input("Your answer: ")
 
     if answer.lower() == "fear":
-        print("\nThe darkness acknowledges your insight.")
+        print("The darkness acknowledges your insight.")
         return True
 
-    print("\nYou fail to name the unseen force.")
+    print("You fail to name the unseen force.")
     return False
 
 
+# BLACK - Fragment Trial
+# Calculate remaining power after fragment fusion.
 def black_fragment_trial():
 
-    print("\nA fallen demon drops spirit fragments.")
-    print("Each fragment gives 6 power.")
+    print("\nEach spirit fragment gives 6 power.")
     print("You collect 4 fragments.")
-    print("But channeling them costs 5 power.")
-    print("\nHow much power remains?")
+    print("Channeling costs 5 power.")
+    print("How much remains?")
 
     answer = input("Your answer: ")
 
     if answer == "19":
-        print("\nThe fragments fuse perfectly into your core.")
-        print("You feel darker… stronger.")
+        print("The fragments fuse into your core.")
         return True
 
-    print("\nThe fragments shatter in your hands.")
-    print("Their power slips away into the void.")
+    print("The fragments shatter.")
     return False
 
 
+# BLACK - Word Strength
+# Speak a powerful word meeting specific conditions.
 def black_word_strength():
 
     print("\nSpeak a word of power.")
-    print("It must be longer than 6 letters.")
-    print("And contain at least 2 vowels (a, e, i, o, u).")
+    print("Longer than 6 letters.")
+    print("At least 2 vowels.")
 
     word = input("Your word: ").lower()
 
@@ -138,6 +134,8 @@ def black_word_strength():
     return False
 
 
+# BLACK - Endurance Trial
+# Survive three consecutive shadow strikes.
 def black_endurance_trial():
 
     print("\nYou must survive 3 shadow strikes.")
@@ -155,6 +153,9 @@ def black_endurance_trial():
     print("You endure the assault.")
     return True
 
+
+# BLACK - Hidden Number
+# Guess the hidden number between 10 and 20.
 def black_hidden_number():
 
     secret = random.randint(10, 20)
@@ -163,7 +164,7 @@ def black_hidden_number():
     guess = int(input("Your guess: "))
 
     if guess == secret:
-        print("You guessed perfectly.")
+        print("Perfect guess.")
         return True
 
     print("Wrong. The number was", secret)
@@ -171,7 +172,7 @@ def black_hidden_number():
 
 
 # BLACK - Endurance Duel
-# More complex duel system.
+# Win by beating the guardian’s strength by at least 3 points.
 def black_endurance_duel():
 
     print("\nA powerful guardian stands before you.")
@@ -189,12 +190,8 @@ def black_endurance_duel():
     return False
 
 
-# BLACK - Element Alignment Puzzle
-# Logical deduction.
-
-
-# BLACK - Deep Riddle
-# Abstract thinking.
+# BLACK - Void Riddle
+# Solve the abstract silence riddle.
 def black_void_riddle():
 
     print("\nI am taken before you can see me.")
@@ -208,27 +205,54 @@ def black_void_riddle():
 
     return False
 
+
+# BLACK - Order Trial
+# Deduce the correct statue position.
 def black_order_trial():
 
     print("\nFour statues stand in a line:")
     print("Warrior, Mage, Beast, King.")
-    print("\nAn inscription reads:")
-    print("'The Beast stands somewhere after the Mage.'")
+    print("'The Beast stands after the Mage.'")
     print("'The Warrior is not at either end.'")
     print("'The King stands at one of the ends.'")
-    print("\nWho stands in the second position?")
+    print("Who stands in the second position?")
 
     answer = input("Your answer: ")
 
     if answer.lower() == "warrior":
-        print("\nThe statues grind as stone shifts into place.")
+        print("The statues shift.")
         return True
 
-    print("\nNothing moves. The puzzle resets.")
+    print("The puzzle resets.")
     return False
 
 
-
-
-
 # RUN BLACK SIDE QUEST
+def run_black_side_quest():
+
+    print("\nBLACK SIDE QUEST STARTED")
+
+    quests = [
+        black_risk_trial,
+        black_void_bargain,
+        black_unseen_riddle,
+        black_fragment_trial,
+        black_word_strength,
+        black_endurance_trial,
+        black_hidden_number,
+        black_endurance_duel,
+        black_void_riddle,
+        black_order_trial
+    ]
+
+    quest = random.choice(quests)
+    result = quest()
+
+    if result:
+        print("\nYou endure the darkness. High reward granted.")
+    else:
+        print("\nYou fail. Severe damage taken.")
+
+
+if __name__ == "__main__":
+    run_black_side_quest()
